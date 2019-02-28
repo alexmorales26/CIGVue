@@ -1,28 +1,25 @@
+/* Implemented by Alexander Morales 02/27/19 */
 import React, { Component } from 'react';
-import logo from '../src/assets/img/logo.svg';
-import './assets/css/App.css';
+import { Route, Switch,Redirect} from "react-router-dom";
+import { Provider } from 'react-redux';
+import {Store} from './store/store';
+import {ConnectedRouter} from 'connected-react-router';
+import history from './store/history' ;
+import Dashboard from './routes/dashboard/index';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={Store} >
+        <ConnectedRouter history={history} >
+          <div>
+            <Switch>
+              <Route path="/home" exact component={Dashboard}/>
+              <Redirect to="/home" from=""/>
+            </Switch>
+          </div>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }
-
-export default App;

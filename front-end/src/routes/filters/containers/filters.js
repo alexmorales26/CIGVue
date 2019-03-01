@@ -1,10 +1,11 @@
 import React,{Component} from 'react';
 
 
-export default class Dashboard extends Component{
+export default class Filters extends Component{
     render(){
         return (
-              <div>  Dashboard goes here
+              <div>
+              filters
               </div>
         );
     }

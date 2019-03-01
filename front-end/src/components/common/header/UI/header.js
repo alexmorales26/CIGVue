@@ -12,7 +12,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-
+import "../../../../assets/css/header.css"
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -53,29 +53,34 @@ export default class Header extends React.Component {
                 <NavLink href="/exports">Exports</NavLink>
               </NavItem>
 
-              <NavItem>
-                <NavLink>Welcome, Admin!</NavLink>
-              </NavItem>
+
+
+
+            </Nav>
+            <Nav navbar>
+
+
+            <NavItem>
+              <NavLink>Welcome, Admin!</NavLink>
+            </NavItem>
 
 {/* move this all the way to the right*/}
 <UncontrolledDropdown nav inNavbar>
 <DropdownToggle nav caret>
- {/*change this with a image*/}image
+{/*change this with a image*/}image
 </DropdownToggle>
 <DropdownMenu right>
- <DropdownItem>
-   Login
- </DropdownItem>
- <DropdownItem>
-   Logout
- </DropdownItem>
+<DropdownItem>
+ Login
+</DropdownItem>
+<DropdownItem>
+ Logout
+</DropdownItem>
 </DropdownMenu>
 </UncontrolledDropdown>
 
 
-              <NavItem>
 
-              </NavItem>
             </Nav>
 
         </Navbar>

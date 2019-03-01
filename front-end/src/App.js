@@ -22,8 +22,6 @@ export default class App extends Component {
            <Header/>
             <Switch>
               <Route path="/home" exact component={Dashboard}/>
-
-
               <Route path="/startOver"  component={StartOver} />
               <Route path="/filters" component={Filters} />
               <Route path="/graphs" component={Graphs} />

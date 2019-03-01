@@ -35,7 +35,7 @@ export default class Header extends React.Component {
     }
     render() {
         const { user } = this.state;
-        return ( <div>
+        return ( <div class="containers">
         <Navbar color="primary" dark expand="md">
           <NavbarBrand href="/home">CIGVue</NavbarBrand>
 
@@ -53,12 +53,31 @@ export default class Header extends React.Component {
                 <NavLink href="/exports">Exports</NavLink>
               </NavItem>
 
+              <NavItem>
+                <NavLink>Welcome, Admin!</NavLink>
+              </NavItem>
+
+{/* move this all the way to the right*/}
+<UncontrolledDropdown nav inNavbar>
+<DropdownToggle nav caret>
+ {/*change this with a image*/}image
+</DropdownToggle>
+<DropdownMenu right>
+ <DropdownItem>
+   Login
+ </DropdownItem>
+ <DropdownItem>
+   Logout
+ </DropdownItem>
+</DropdownMenu>
+</UncontrolledDropdown>
+
 
               <NavItem>
 
               </NavItem>
             </Nav>
-          
+
         </Navbar>
       </div>
     );

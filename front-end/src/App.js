@@ -16,6 +16,7 @@ import Export from './routes/export/index'
 export default class App extends Component {
   render() {
     return (
+    
       <Provider store={Store} >
         <ConnectedRouter history={history} >
           <div>
@@ -30,8 +31,12 @@ export default class App extends Component {
 
             </Switch>
           </div>
+
         </ConnectedRouter>
+
       </Provider>
+
+
     );
   }
 }

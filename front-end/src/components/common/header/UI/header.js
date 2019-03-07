@@ -35,7 +35,7 @@ export default class Header extends React.Component {
     }
     render() {
         const { user } = this.state;
-        return ( <div class="containers">
+        return ( <div className="containers">
         <Navbar color="primary" dark expand="md">
           <NavbarBrand href="/home">CIGVue</NavbarBrand>
 
@@ -88,34 +88,3 @@ export default class Header extends React.Component {
     );
   }
 }
-
-/*
-<div>
-<Navbar color="primary" dark expand="md">
- <NavbarBrand href="/home">CIGVue</NavbarBrand>
- //<NavbarToggler onClick={this.toggle} />
- //<Collapse isOpen={this.state.isOpen} navbar>
-   <Nav className="mr-auto" navbar>
-     <NavItem>
-       <NavLink href="/startOver">StartOver</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/filters">Filters</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/Graphs">Graphs</NavLink>
-     </NavItem>
-     <NavItem>
-       <NavLink href="/exports">Exports</NavLink>
-     </NavItem>
-
-
-     <NavItem>
-
-      //<h5 className="display-5"> {user} </h5>
-     </NavItem>
-   </Nav>
- </Collapse>
-</Navbar>
-</div>
-*/

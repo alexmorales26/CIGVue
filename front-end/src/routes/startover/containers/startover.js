@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
-import FileUpload from '../../../components/file_upload.js'
+import ModalExample from '../../../components/pop-up.js'
 
 
 export default class StartOver extends Component{
     render(){
         return (
-          <div>
-          <FileUpload />
-          </div>
+
+          <ModalExample/>
+
         );
     }
 }

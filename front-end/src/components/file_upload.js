@@ -25,6 +25,10 @@ class FileUpload extends Component {
       return window.alert("Please choose a File!");
     }
     this.fileReader.readAsText(this.state.filename);
+    if(this.props.onUploadComplete){
+      this.props.onUploadComplete()
+    }
+
   }
 
   render() {

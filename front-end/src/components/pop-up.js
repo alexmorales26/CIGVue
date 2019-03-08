@@ -38,7 +38,7 @@ class ModalExample extends React.Component {
           <ModalBody>
 
 
-          
+           <FileUpload onUploadComplete={this.closeModal}/>
 
           </ModalBody>
 

@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        uploadFile: (file) => {
-            dispatch(API.uploadFile(file));
+        uploadFile: () => {
+            dispatch(API.uploadFile());
         },
         setFile:(file) => {
             dispatch(setFile(file));

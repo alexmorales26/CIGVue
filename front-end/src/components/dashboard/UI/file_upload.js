@@ -1,39 +1,40 @@
-import React,{Component} from 'react';
-
+import React, { Component } from 'react';
+import {Button} from 'reactstrap'
+import CSVReader from 'react-csv-reader';
 
 export default class FileUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedFile: null,
-      uploadPercentage: 0
+      selectedFile: null
     };
-    this.onSelectFileChange = this.onSelectFileChange.bind(this);
-    this.onUploadClick = this.onUploadClick.bind(this);
   }
 
-  onSelectFileChange(e) {
+  handleFile(data){
     this.setState({
-      selectedFile: e.target.files[0],
-      uploadPercentage: 0
+      selectedFile: data
     });
-    this.props.setFile(e.target.files[0]);
   }
-
-  onUploadClick(e) {
-    if(!this.state.selectedFile){
-      return window.alert("Please choose a File!");
-    }
-    this.props.uploadFile();
+  handleUpload(){
+    let {selectedFile} = this.state
+    this.props.setFile(selectedFile);
+    //this.props.uploadFile(); this is the API call still under development 
   }
 
   render() {
-    const {uploadPercentage} = this.state;
     return (
       <div className="file-upload">
-        <input type="file" onChange={this.onSelectFileChange} />
-        <button onClick={this.onUploadClick}>Upload</button>
-        <div> {Math.round(uploadPercentage,2) } % </div>
+        <CSVReader
+        cssClass="react-csv-input"
+          label="Upload CSV File"
+          onFileLoaded={this.handleFile.bind(this)}
+        />
+      <Button 
+        color="primary"
+        onClick={this.handleUpload.bind(this)}
+      > 
+        Upload
+      </Button>
       </div>
     );
   }

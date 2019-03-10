@@ -1,11 +1,10 @@
 const routes = require('express').Router();
+const controller = require('../controllers');
 
-routes.get('/',(req,res) => {
-    res.status(200).json({message:'Connected !'});
-});
-
-routes.get('/api',(req,res) => {
-    res.status(200).json({message:'Capstone'})
-});
+/* controllers will be imported from the controllers folder */
+routes.post('/cigv/api/recieveFile',controller.recieveFile);
+// routes.options('/cigv/api/recieveFile',(req,res)=> {
+//     res.status(200);
+// })
 
 module.exports = routes;

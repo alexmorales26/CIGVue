@@ -12,10 +12,12 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 */
 /* Imported component reducers */
 import {headerReducer} from '../components/common/header';
+import {dashboardReducer} from '../components/dashboard'
 const rootReducer = combineReducers(
     {
         router: connectRouter(history),
-         dashboard: headerReducer
+        header: headerReducer,
+        dashboard:dashboardReducer
     }
 );
 

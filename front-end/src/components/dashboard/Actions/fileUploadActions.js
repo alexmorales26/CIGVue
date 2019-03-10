@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import FileUpload from '../UI/file_upload';
+import FileUpload from '../UI/file_upload.js';
 import API from '../../../api'
 const setFile = (file) => {
     return {

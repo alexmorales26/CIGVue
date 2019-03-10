@@ -13,6 +13,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 import "../../../../assets/css/header.css"
+import { TiUser} from 'react-icons/ti';
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -56,6 +57,9 @@ export default class Header extends React.Component {
 
 
 
+<ion-icon name="person"></ion-icon>
+
+
             </Nav>
             <Nav navbar>
 
@@ -67,7 +71,9 @@ export default class Header extends React.Component {
 {/* move this all the way to the right*/}
 <UncontrolledDropdown nav inNavbar>
 <DropdownToggle nav caret>
-{/*change this with a image*/}image
+<TiUser>
+</TiUser>
+
 </DropdownToggle>
 <DropdownMenu right>
 <DropdownItem>

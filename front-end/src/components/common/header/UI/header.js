@@ -12,8 +12,11 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import "../../../../assets/css/header.css"
 import { TiUser} from 'react-icons/ti';
+import LogInModal from "../../../dashboard/Actions/logInActions";
+
+import "../../../../assets/css/header.css"
+
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -65,7 +68,7 @@ export default class Header extends React.Component {
 
 
             <NavItem>
-              <NavLink>Welcome, Admin!</NavLink>
+              <NavLink>Welcome, {this.props.user}!</NavLink>
             </NavItem>
 
 {/* move this all the way to the right*/}
@@ -77,7 +80,7 @@ export default class Header extends React.Component {
 </DropdownToggle>
 <DropdownMenu right>
 <DropdownItem>
- Login
+ <LogInModal />
 </DropdownItem>
 <DropdownItem>
  Logout

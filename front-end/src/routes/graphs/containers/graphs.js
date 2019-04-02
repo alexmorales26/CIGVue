@@ -1,52 +1,32 @@
 import React,{Component} from 'react';
 import { Container, Row, Col,Image } from 'reactstrap';
-import '../../../assets/css/graph.css'
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle,CardHeader, Button } from 'reactstrap';
+//import '../../../assets/css/graph.css'
+import MixedBarPlot from '../../../components/dashboard/UI/stackedGraph/mixedBarPlot';
 
-
-
-
-const GraphItem = ({ pic }) => (
-  <img src={pic} />
-);
-
+//src/components/dashboard/UI/stackedGraph/mixedBarPlot.js
 export default class Graphs extends Component{
     render(){
         return (
+          <div>
+          <Card>
+          <CardHeader> Graph 1 </CardHeader>
+          <CardBody>
+            <MixedBarPlot />
+            <Button> Extend Graph </Button>
+                </CardBody>
+            </Card>
 
-  <Container>
-  <Row >
-   <Col className="firstGrid" >
-   <GraphItem pic={ 'https://4.bp.blogspot.com/_Bf48JKOl5HQ/TTRNfpBbXRI/AAAAAAAAB6U/nKKQZzThJEw/s1600/BlackBox.jpg'}fluid />
+            <Card>
+            <CardHeader> Graph 2 </CardHeader>
+                <CardBody>
+              <MixedBarPlot />
+              <Button> Extend Graph </Button>
+            </CardBody>
+              </Card>
 
-   </Col>
-
-   <Col className="SecondGrid">
-   <GraphItem pic={'https://4.bp.blogspot.com/_Bf48JKOl5HQ/TTRNfpBbXRI/AAAAAAAAB6U/nKKQZzThJEw/s1600/BlackBox.jpg'} />
-
-   </Col>
-  </Row>
-
- <Row>
- <Col className="thirdGrid"  >
- <GraphItem pic={'https://4.bp.blogspot.com/_Bf48JKOl5HQ/TTRNfpBbXRI/AAAAAAAAB6U/nKKQZzThJEw/s1600/BlackBox.jpg'} roundedCircle />
- </Col>
- <Col className="fourthGrid"  >
- <GraphItem pic={'https://4.bp.blogspot.com/_Bf48JKOl5HQ/TTRNfpBbXRI/AAAAAAAAB6U/nKKQZzThJEw/s1600/BlackBox.jpg'}rounded />
-  </Col>
-</Row>
-
-</Container>
-
-
-
-
-
-
-
-
-
-
-
+          </div>
         );
 
     }

@@ -48,15 +48,12 @@ export default class Header extends React.Component {
                 <NavLink href="/startOver">StartOver</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/filters">Filters</NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink href="/Graphs">Graphs</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/exports">Exports</NavLink>
-              </NavItem>
-
+              {/* <NavItem>
+                 <NavLink href="/exports">Exports</NavLink>
+               </NavItem>
+               */}
 
 
 

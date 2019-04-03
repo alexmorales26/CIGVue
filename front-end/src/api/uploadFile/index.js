@@ -6,8 +6,9 @@ const uploadFile = () => (dispatch,getState) => {
     let file = dashboard.file;
     let url = properties.FileUpload;
     Axios.post(
-        url,
-        file
+        url,{
+            data:{file}
+        }
     ).then(
         response => {
             console.log(response);

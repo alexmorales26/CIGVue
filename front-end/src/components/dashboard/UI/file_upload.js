@@ -22,7 +22,7 @@ export default class FileUpload extends Component {
   handleUpload(){
     let {selectedFile} = this.state
     this.props.setFile(selectedFile);
-    //this.props.uploadFile(); this is the API call still under development
+    this.props.uploadFile(); //this is the API call still under development
     this.setState({
       modal:false
     })

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CSVReader from 'react-csv-reader';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import '../../../assets/css/fileUploadActions.css'
 
 export default class FileUpload extends Component {
   constructor(props) {
@@ -44,11 +44,12 @@ export default class FileUpload extends Component {
   render() {
     return (
 
-      <div>
-        <Button color="danger" onClick={this.toggle}>popup</Button>
+      <div id="body">
+      <div id="dataDragButton">
+        <Button color="danger" size="lg" block onClick={this.toggle}>Drag Your Data</Button>
         <Modal isOpen={this.state.modal} modalTransition={{ timeout: 700 }} backdropTransition={{ timeout: 1300 }}
           toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Choose Your File</ModalHeader>
           <ModalBody>
       <div className="file-upload">
         <CSVReader
@@ -58,6 +59,7 @@ export default class FileUpload extends Component {
         />
       <Button
         color="primary"
+        outline color="info"
         onClick={this.handleUpload.bind(this)}
       >
         Upload
@@ -66,6 +68,8 @@ export default class FileUpload extends Component {
       </ModalBody>
 
     </Modal>
+  </div>
+
   </div>
     );
   }

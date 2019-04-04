@@ -27,17 +27,7 @@ const data = [
 
 export default class MixedBarPlot extends Component {
 
-{/*  // static propTypes = {
-  //   width: PropTypes.number,
-  //   height: PropTypes.number,
-  //   data: PropTypes.array.isRequired
-  // }
-  //
-  // static defaultProps = {
-  //   width: 500,
-  //   height: 300,
-  // }
-  */}
+
 
   render() {
     return (

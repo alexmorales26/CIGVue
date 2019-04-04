@@ -1,3 +1,23 @@
 #body{
     text-align: center;
 }
+
+.App-logo{
+    padding-left: 30%;
+    padding-top: 150px;
+}
+#title{
+    border: 50%;
+    padding-left: 45px;
+}
+#startButton{
+    padding-left: 50%;
+    padding-right: 50px;
+    
+}
+#spacer{
+    padding-top: 50px;
+}
+#logoFadeIn{
+    padding-left: 50px;
+}

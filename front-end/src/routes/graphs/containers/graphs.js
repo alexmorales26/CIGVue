@@ -2,8 +2,10 @@ import React,{Component} from 'react';
 import { Container, Row, Col,Image } from 'reactstrap';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle,CardHeader, Table, Button, ButtonGroup, Alert } from 'reactstrap';
+import ReactSvgPieChart from "react-svg-piechart"
 import '../../../assets/css/graph.css'
 import MixedBarPlot from '../../../components/dashboard/UI/stackedGraph/mixedBarPlot';
+import PieExample from '../../../components/dashboard/UI/stackedGraph/piChart';
 
 //src/components/dashboard/UI/stackedGraph/mixedBarPlot.js
 export default class Graphs extends Component{
@@ -111,6 +113,8 @@ export default class Graphs extends Component{
         </tr>
       </thead>
 
+
+
       </Table>
       <Row>
 
@@ -137,7 +141,33 @@ export default class Graphs extends Component{
             </CardBody>
               </Card>
               </Col>
+
+        
+        <Table>
+        <thead>
+          <tr>
+            <th><Col sm>
+
+            <Card>
+            <CardHeader> PiChart</CardHeader>
+                <CardBody>
+
+                  
+              <PieExample />
+
+            </CardBody>
+              </Card>
+              </Col></th>
+        </tr>
+      </thead>
+      </Table>
+      
+
+
               <Col sm>
+
+
+              
               </Col>
           </Row>
 </Container>

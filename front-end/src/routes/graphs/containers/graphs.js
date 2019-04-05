@@ -5,6 +5,7 @@ import { Card, CardImg, CardText, CardBody,
 import '../../../assets/css/graph.css'
 import MixedBarPlot from '../../../components/dashboard/UI/stackedGraph/mixedBarPlot';
 import GraphCard from "./graphCard";
+import PieGraph from "../../../components/dashboard/UI/pieChartGraph/pieGraph.js";
 
 //src/components/dashboard/UI/stackedGraph/mixedBarPlot.js
 export default class Graphs extends Component{
@@ -28,13 +29,13 @@ export default class Graphs extends Component{
             <Row style={{marginBottom: "1rem"}}>
               <Col lg="6">
                 <GraphCard title="Graph 3">
-                  <MixedBarPlot />
+                  <PieGraph />
                 </GraphCard>
               </Col>
 
               <Col lg="6">
               <GraphCard title="Graph 4">
-                <MixedBarPlot />
+                <PieGraph />
               </GraphCard>
               </Col>
             </Row>

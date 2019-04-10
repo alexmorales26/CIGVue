@@ -18,7 +18,6 @@ export default class Graphs extends Component{
                   <MixedBarPlot />
                 </GraphCard>
               </Col>
-
               <Col lg="6">
               <GraphCard title="Graph 2">
                 <MixedBarPlot />

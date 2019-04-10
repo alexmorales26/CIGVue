@@ -44,12 +44,12 @@ export default class Header extends React.Component {
           <NavbarBrand href="/home">CIGVue</NavbarBrand>
 
             <Nav className="mr-auto" navbar>
-              <NavItem>
+             {/*} <NavItem>
                 <NavLink href="/startOver">StartOver</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/Graphs">Graphs</NavLink>
-              </NavItem>
+    </NavItem>*/ }
               {/* <NavItem>
                  <NavLink href="/exports">Exports</NavLink>
                </NavItem>

@@ -6,37 +6,22 @@ import {Store} from './store/store';
 import {ConnectedRouter} from 'connected-react-router';
 import history from './store/history' ;
 import Dashboard from './routes/dashboard/index';
-
 import Header from './components/common/header/Actions/headerActions'
-import StartOver from './routes/startover/index'
-import Graphs from './routes/graphs/index'
-import Export from './routes/export/index'
-
 
 export default class App extends Component {
   render() {
     return (
-
       <Provider store={Store} >
         <ConnectedRouter history={history} >
           <div>
            <Header/>
             <Switch>
               <Route path="/home" exact component={Dashboard}/>
-              <Route path="/startOver"  component={StartOver} />
-
-              <Route path="/graphs" component={Graphs} />
-              <Route path="/exports" component={Export} />
               <Redirect to="/home" from=""/>
-
             </Switch>
           </div>
-
         </ConnectedRouter>
-
       </Provider>
-
-
     );
   }
 }

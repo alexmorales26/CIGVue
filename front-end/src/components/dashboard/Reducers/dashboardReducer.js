@@ -3,7 +3,10 @@
 const initialState = {
     file: null,
     fileUploadModalStatus: true,
-    fileUploadErrorAlert:false
+    fileUploadErrorAlert:false,
+    serverData: [],
+    serverDataHeaders: [],
+    serverError:null
 };
 
 const dashboardReducer = (state=initialState, action) => {
@@ -20,6 +23,15 @@ const dashboardReducer = (state=initialState, action) => {
             return Object.assign({},state,{
                 fileUploadErrorAlert:action.payload
             })
+        case "SET_SERVER_RESPONSE":
+            return Object.assign({},state,{
+                serverData:action.payload.serverData,
+                serverDataHeaders: action.payload.serverDataHeaders
+            });
+        case "SET_SERVER_ERROR":
+            return Object.assign({},state,{
+                serverError:action.payload
+            });
         default:
             return state;
     }

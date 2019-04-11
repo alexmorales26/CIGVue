@@ -3,9 +3,9 @@ import { Container, Row, Col,Image } from 'reactstrap';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle,CardHeader, Button } from 'reactstrap';
 import '../../../assets/css/graph.css'
-import MixedBarPlot from '../../../components/dashboard/UI/stackedGraph/mixedBarPlot';
+import FirstBarGraph from '../../../components/dashboard/Actions/firstBarGraphActions';
 import GraphCard from "./graphCard";
-import PieGraph from "../../../components/dashboard/UI/pieChartGraph/pieGraph.js";
+import PieGraph from "../../../components/dashboard/Actions/pieChartActions";
 import FileUpload from '../../../components/dashboard/Actions/fileUploadActions';
 export default class Graphs extends Component{
     render(){
@@ -15,12 +15,12 @@ export default class Graphs extends Component{
             <Row style={{marginBottom: "1rem"}}>
               <Col lg="6">
                 <GraphCard title="Graph 1">
-                  <MixedBarPlot />
+                  <FirstBarGraph />
                 </GraphCard>
               </Col>
               <Col lg="6">
               <GraphCard title="Graph 2">
-                <MixedBarPlot />
+                <FirstBarGraph />
               </GraphCard>
               </Col>
             </Row>

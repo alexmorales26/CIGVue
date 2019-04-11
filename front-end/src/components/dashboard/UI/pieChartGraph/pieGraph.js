@@ -3,7 +3,7 @@ import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
 
-const data = [
+const data2 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
   { name: 'Group C', value: 300 },
@@ -28,13 +28,22 @@ const renderCustomizedLabel = ({
 };
 
 export default class PieGraph extends Component {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/c9pL8k61/';
-
+constructor(props){
+  super(props);
+  this.state={
+    data: props.serverData
+  }
+}
+componentWillReceiveProps(nextProps){
+  this.setState({
+    data: nextProps.serverData
+  })
+}
   render() {
     return (
       <PieChart width={400} height={400}>
         <Pie
-          data={data}
+          data={data2}
           cx={200}
           cy={200}
           labelLine={false}
@@ -44,7 +53,7 @@ export default class PieGraph extends Component {
           dataKey="value"
         >
           {
-            data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+            data2.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
           }
         </Pie>
       </PieChart>

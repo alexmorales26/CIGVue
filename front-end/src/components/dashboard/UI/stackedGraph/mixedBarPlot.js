@@ -25,10 +25,19 @@ const data = [
   },
 ];
 
-export default class MixedBarPlot extends Component {
-
-
-
+export default class FirstBarGraph extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      data: props.serverData
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      data: nextProps.serverData
+    })
+  }
+  
   render() {
     return (
       <BarChart

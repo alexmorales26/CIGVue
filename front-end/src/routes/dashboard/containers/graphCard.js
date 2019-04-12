@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle,CardHeader, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import MixedBarPlot from '../../../components/dashboard/UI/stackedGraph/mixedBarPlot';
-
+import Selector from '../../../components/common/selector/selector'
 export default class GraphCard extends Component {
   constructor(props) {
     super(props);
@@ -30,10 +30,11 @@ export default class GraphCard extends Component {
             {children}
             <Button onClick={this.toggle}>Extend Graph</Button>
           </CardBody>
+
         </Card>
 
 
-  
+
         {/* This is one way we can do it to expand the size of the graphs
           <div style={{visibility: isModalOpen ? "visible" : "hidden", background: "white", position: "fixed", top: 0, bottom: 0, left: 0, right: 0, height: "100vh", width: "100vw", zIndex: "100"}}>
           <a onClick={this.toggle}>close this</a>

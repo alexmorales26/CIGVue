@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
-
-
+import Selector from '../../../common/selector/selector.js'
 const data2 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -35,7 +34,7 @@ constructor(props){
     data: props.serverData,
     userNames: props.userNames
   }
-  
+
 }
 componentWillReceiveProps(nextProps){
   this.setState({
@@ -44,8 +43,10 @@ componentWillReceiveProps(nextProps){
   })
 }
   render() {
-    
+
     return (
+      <div>
+      <Selector {...this.props} />
       <PieChart width={400} height={400}>
         <Pie
           data={data2}
@@ -63,6 +64,7 @@ componentWillReceiveProps(nextProps){
           }
         </Pie>
       </PieChart>
+      </div>
     );
   }
 }

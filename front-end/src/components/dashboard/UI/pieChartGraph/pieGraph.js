@@ -41,6 +41,7 @@ componentWillReceiveProps(nextProps){
 }
   render() {
     return (
+      <div>
       <PieChart width={400} height={400}>
         <Pie
           data={data2}
@@ -58,6 +59,7 @@ componentWillReceiveProps(nextProps){
           }
         </Pie>
       </PieChart>
+      </div>
     );
   }
 }

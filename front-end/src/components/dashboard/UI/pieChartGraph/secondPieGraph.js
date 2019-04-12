@@ -3,6 +3,7 @@ import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
 
+
 const data2 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -27,11 +28,13 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default class PieGraph extends Component {
+export default class SecondPieGraph extends Component {
 constructor(props){
+  console.log(props);
   super(props);
   this.state={
-    data: props.serverData
+    data: props.serverData,
+    userNames: props.transformUserNameData(props.serverData)
   }
 }
 componentWillReceiveProps(nextProps){
@@ -40,6 +43,7 @@ componentWillReceiveProps(nextProps){
   })
 }
   render() {
+    console.log(this.state.userNames)
     return (
       <PieChart width={400} height={400}>
         <Pie

@@ -6,6 +6,7 @@ import '../../../assets/css/graph.css'
 import FirstBarGraph from '../../../components/dashboard/Actions/firstBarGraphActions';
 import GraphCard from "./graphCard";
 import PieGraph from "../../../components/dashboard/Actions/pieChartActions";
+import SecondPieGraph from "../../../components/dashboard/Actions/secondPieChartActions";
 import FileUpload from '../../../components/dashboard/Actions/fileUploadActions';
 export default class Graphs extends Component{
     render(){
@@ -34,7 +35,7 @@ export default class Graphs extends Component{
 
               <Col lg="6">
               <GraphCard title="Graph 4">
-                <PieGraph />
+                <SecondPieGraph />
               </GraphCard>
               </Col>
             </Row>

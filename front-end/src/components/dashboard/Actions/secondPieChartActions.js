@@ -5,15 +5,13 @@ const mapStateToProps = (state) => {
     return {
         serverData:state.dashboard.serverData || [],
         serverDataHeaders: state.dashboard.serverDataHeaders || [],
+        userNames: utils.userNameProcessor(state.dashboard.serverData) || []
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-      transformUserNameData: (data) => {
-        console.log("HELLO");
-        dispatch(utils.userNameProcessor(data));
-      }
+
     }
 }
 

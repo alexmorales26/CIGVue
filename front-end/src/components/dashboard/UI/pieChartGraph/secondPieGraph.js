@@ -30,20 +30,21 @@ const renderCustomizedLabel = ({
 
 export default class SecondPieGraph extends Component {
 constructor(props){
-  console.log(props);
   super(props);
   this.state={
     data: props.serverData,
-    userNames: props.transformUserNameData(props.serverData)
+    userNames: props.userNames
   }
+  
 }
 componentWillReceiveProps(nextProps){
   this.setState({
-    data: nextProps.serverData
+    data: nextProps.serverData,
+    userNames: nextProps.userNames
   })
 }
   render() {
-    console.log(this.state.userNames)
+    
     return (
       <PieChart width={400} height={400}>
         <Pie

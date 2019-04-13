@@ -3,6 +3,9 @@ import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
 
+import Selector from '../../../common/selector/teamSelector'
+
+
 const data2 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -31,17 +34,20 @@ export default class PieGraph extends Component {
 constructor(props){
   super(props);
   this.state={
-    data: props.serverData
+    data: props.serverData,
+    teamNames:props.teamNames
   }
 }
 componentWillReceiveProps(nextProps){
   this.setState({
-    data: nextProps.serverData
+    data: nextProps.serverData,
+    teamNames: nextProps.teamNames
   })
 }
   render() {
     return (
       <div>
+      <Selector {...this.props} />
       <PieChart width={400} height={400}>
         <Pie
           data={data2}

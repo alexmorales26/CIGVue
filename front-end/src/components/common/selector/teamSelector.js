@@ -5,14 +5,14 @@ export default class Selector extends Component{
   constructor(props){
     super(props);
     this.state={
-      options: props.userNames,
+      options: props.teamNames,
       selectedUser: undefined
     }
     this.selectorHandle = this.selectorHandle.bind(this);
   }
   componentWillReceiveProps(nextProps){
     this.setState({
-      options: nextProps.userNames
+      options: nextProps.teamNames
 
     })
   }

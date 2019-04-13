@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
-import Selector from '../../../common/selector/selector.js'
+import Selector from '../../../common/selector/selector'
 const data2 = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
@@ -40,6 +40,7 @@ componentWillReceiveProps(nextProps){
   this.setState({
     data: nextProps.serverData,
     userNames: nextProps.userNames
+
   })
 }
   render() {

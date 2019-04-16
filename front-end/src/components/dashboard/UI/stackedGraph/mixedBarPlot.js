@@ -2,27 +2,27 @@ import React,{Component} from 'react';
 import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 const data = [
-  {
-    name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-  },
-  {
-    name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-  },
-  {
-    name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-  },
-  {
-    name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-  },
-  {
-    name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-  },
-  {
-    name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-  },
-  {
-    name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-  },
+  // {
+  //   name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
+  // },
+  // {
+  //   name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
+  // },
+  // {
+  //   name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
+  // },
+  // {
+  //   name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
+  // },
+  // {
+  //   name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
+  // },
+  // {
+  //   name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
+  // },
+  // {
+  //   name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
+  // },
 ];
 
 // const Bars = ({data}) => {
@@ -54,6 +54,10 @@ export default class FirstBarGraph extends Component {
       data: props.serverData,
       headers: props.serverDataHeaders
     }
+
+    this.makeBarArray = this.makeBarArray.bind(this);
+    this.getIndOfArray = this.getIndOfArray.bind(this);
+    this.createBars = this.createBars.bind(this);
   }
   componentWillReceiveProps(nextProps){
     this.setState({
@@ -62,7 +66,14 @@ export default class FirstBarGraph extends Component {
     })
   }
 
-  makeBarArray(in_data){
+  getIndOfArray(name) {
+    //Find the index of the header that we want to display on the x-axis.
+    //This searches for the index of the input for name.
+    var ind = this.state.headers.findIndex(name);
+    return ind;
+  }
+
+  makeBarArray(in_data, in_name){
     var inLen, i;
     inLen = in_data.length;
 
@@ -72,9 +83,16 @@ export default class FirstBarGraph extends Component {
       //this loop, so we'll make variables for them here for ease of use.
       var na, act, hrs;
 
-      //Changing what specifically these are referencing is simple, but since
-      //we don't have a way to see what they want they're hardcoded for now.
-      na = in_data[i][5];
+      //This allows us to change what we want to use as the name value for
+      //our bar graph. Since we don't have a way to select this outside of
+      //altering this code yet, it's currently hardcoded to "Full_name" for
+      //testing purposes.
+      //var indName = this.getIndOfArray(in_name);
+      var indName = this.getIndOfArray("Full_name");
+      na = in_data[i][indName];
+
+      //These two values are always the same in the format provided, so
+      //they're hardcoded. This can be changed.
       act = in_data[i][12];
       hrs = in_data[i][2];
 
@@ -116,13 +134,27 @@ export default class FirstBarGraph extends Component {
     }
 
     return(
-      <Bar dataKey={data[0][data[0].act_types[0]]} stackId={data[0].name} fill="#8884d8"/>
+      this.createBars()
     );
+  }
+
+  createBars(){
+    var j, k;
+    var bars = [];
+
+    //Iterate over the data and create a Bar tag for each activity name.
+    for(j = 0; j < data.length; j++) {
+      for(k = 0; k < data[j].act_types.length; k++) {
+        var act = data[j].act_types[k];
+        bars.push("<Bar dataKey=" + data[j][act] + " stackId=" + data[j].name + " fill=\"#8884d8\"/>");
+      }
+    }
+
+    return bars;
   }
 
   render() {
     return (
-      //{makeBarArray()}
       <BarChart
         width={this.props.width || 500}
         height={this.props.height || 300}

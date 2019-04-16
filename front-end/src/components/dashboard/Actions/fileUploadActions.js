@@ -7,10 +7,23 @@ const setFile = (file) => {
         payload:file
     }
 }
+const setFileUploadModalStatus = (status) => {
+        return {
+            type: "SET_FILE_UPLOAD_MODAL_STATUS",
+            payload: status
+        }   
+}
+const setFileUploadErrorAlert = (status) => {
+    return {
+        type: "SET_FILE_UPLOAD_MODAL_ERROR_ALERT",
+        payload: status
+    }
+}
 
 const mapStateToProps = (state) => {
     return {
-
+        fileUploadModalStatus: state.dashboard.file === null? state.dashboard.fileUploadModalStatus:!state.dashboard.fileUploadModalStatus,
+        fileUploadErrorAlert: state.dashboard.fileUploadErrorAlert
     }
 }
 
@@ -21,6 +34,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         setFile:(file) => {
             dispatch(setFile(file));
+        },
+        setFileUploadModalStatus:(status) => {
+            dispatch(setFileUploadModalStatus(status));
+        },
+        setFileUploadErrorStatus: (status) => {
+            dispatch(setFileUploadErrorAlert(status));
         }
     }
 }

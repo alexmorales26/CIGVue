@@ -1,2 +1,2 @@
-import Dashboard from './containers/dashboard';
-export default Dashboard;
+import dashboard from './containers/dashboard.js';
+export default dashboard;

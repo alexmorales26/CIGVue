@@ -1,6 +1,21 @@
 import Axios from 'axios';
 import properties from '../../config/properties'
 
+const setServerResponse = (dataHeaders,dataResponse) =>{
+    return {
+        type: "SET_SERVER_RESPONSE",
+        payload: {
+            serverData: dataResponse,
+            serverDataHeaders: dataHeaders
+        }
+    }
+}
+const setServerError = (error) => {
+    return {
+        type: "SET_SERVER_ERROR",
+        payload: error
+    }
+}
 const uploadFile = () => (dispatch,getState) => {
     let {dashboard} = getState();
     let file = dashboard.file;
@@ -11,11 +26,12 @@ const uploadFile = () => (dispatch,getState) => {
         }
     ).then(
         response => {
-            console.log(response);
+            dispatch(setServerResponse(response.data.columnHeaders,response.data.data));
         }
     ).catch(
         error => {
-            console.log(error);
+            dispatch(setServerError(error));            
+            dispatch(setServerResponse([],[]));
         }
     )
 }

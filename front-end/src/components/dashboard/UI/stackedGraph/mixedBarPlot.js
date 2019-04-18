@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
-const data = [
+let data = [
   {
     name: 'Page A', uv: 4000, pv: 2400, amt: 2400, act_types: ["uv", "pv", "amt"],
   },
@@ -58,6 +58,7 @@ export default class FirstBarGraph extends Component {
     this.makeBarArray = this.makeBarArray.bind(this);
     this.getIndOfArray = this.getIndOfArray.bind(this);
     this.createBars = this.createBars.bind(this);
+    //console.log(typeof(this.state.serverData));
   }
   componentWillReceiveProps(nextProps){
     this.setState({
@@ -69,19 +70,29 @@ export default class FirstBarGraph extends Component {
   getIndOfArray(name) {
     //Find the index of the header that we want to display on the x-axis.
     //This searches for the index of the input for name.
-    var ind = this.state.headers.findIndex(h => h === name);
+    // console.log("This.state.headers is: " + this.state.headers[5]);
+    // console.log("Name is: " + name);
+    //var ind = this.state.headers.findIndex(h => h == name);
+    var ind;
+    for(var i = 0; i < this.state.headers.length; i++) {
+      //console.log(this.state.headers[i]);
+      if(this.state.headers[i] == name) {
+        ind = i;
+      }
+    }
+    //console.log("Ind is: " + ind);
     return ind;
   }
 
   makeBarArray(in_data, in_name){
-    var inLen, i;
-    inLen = in_data.length;
+    //This statement makes sure the in_data array is defined in some manner,
+    //so it doesn't break if the data has yet to be input.
+    if(typeof(in_data) != 'undefined') {
+      //First we need to reset the overarching data array so we can fill it.
+      data.length = 0;
 
-    //Going over each array in the array to find the three specific variables we need.
-    for(i = 0; i < inLen; i++) {
-      //We'll need the name, the activity name, and the hours repeatedly in
-      //this loop, so we'll make variables for them here for ease of use.
-      var na, act, hrs;
+      var inLen, i;
+      inLen = in_data.length;
 
       //This allows us to change what we want to use as the name value for
       //our bar graph. Since we don't have a way to select this outside of
@@ -89,52 +100,78 @@ export default class FirstBarGraph extends Component {
       //testing purposes.
       //var indName = this.getIndOfArray(in_name);
       var indName = this.getIndOfArray("Full_name");
-      na = in_data[i][indName];
+      //console.log("getIndOfArray got us: " + indName);
 
-      //These two values are always the same in the format provided, so
-      //they're hardcoded. This can be changed.
-      act = in_data[i][12];
-      hrs = in_data[i][2];
+      //console.log(in_data[0]);
+      // console.log("na should equal: ");
+      // console.log(in_data[0][indName]);
 
-      //Check to see if the name listed is in our data array first.
-      if(!data.some(d => d.name === na)) {
-        //If this name doesn't exist in our array, then we need to enter
-        //it into the array.
-        var tObj = new Object;
+      //Going over each array in the array to find the three specific variables we need.
+      for(i = 0; i < inLen; i++) {
+        //We'll need the name, the activity name, and the hours repeatedly in
+        //this loop, so we'll make variables for them here for ease of use.
+        var na, act, hrs;
 
-        //Each object will store an array listing what the names of its own
-        //properties are, since they're dynamic and need a dynamic access.
-        var tArr = [act];
-        tObj.name = na;
-        tObj.act_types = tArr;
+        //na = in_data[i][indName];
+        na = in_data[i]["Full_name"];
+        // console.log("na equals: ");
+        // console.log(na);
 
-        //This stores the hours spent on an activity in a property of the
-        //object that shares the activity's name.
-        tObj[tArr[0]] = hrs;
-        data.push(tObj);
-      } else {
-        //If the name does exist in our array, we just need to update that
-        //specific object.
-        //First we need to know which object we're updating.
-        var ind = data.findIndex(d => d.name === na);
+        //These two values are always the same in the format provided, so
+        //they're hardcoded. This can be changed.
+        //act = in_data[i][12];
+        //hrs = in_data[i][2];
+        act = in_data[i]["Activity_Name"];
+        hrs = in_data[i]["Hours"];
 
-        //Next, we need to check if the name in our array already has a
-        //property with the current activity.
-        if(!data[ind].act_types.some(act)) {
-          //If it doesn't have a property with the current activity's name,
-          //add it to the list and as a property.
-          data[ind].act_types.push(act);
-          data[ind][act] = hrs;
+        //Check to see if the name listed is in our data array first.
+        if(!data.some(d => d.name === na)) {
+          //console.log("Made it into if for not-existing.");
+          //If this name doesn't exist in our array, then we need to enter
+          //it into the array.
+          var tObj = new Object;
+
+          //Each object will store an array listing what the names of its own
+          //properties are, since they're dynamic and need a dynamic access.
+          var tArr = [act];
+          tObj.name = na;
+          tObj.act_types = tArr;
+
+          //This stores the hours spent on an activity in a property of the
+          //object that shares the activity's name.
+          tObj[tArr[0]] = hrs;
+
+          // console.log("Making the object produced this result:");
+          // console.log(tObj);
+          data.push(tObj);
         } else {
-          //If a property with that activity's name already exists, we just
-          //need to find it and add the number of hours.
-          data[ind][act] += hrs;
+          //If the name does exist in our array, we just need to update that
+          //specific object.
+          //First we need to know which object we're updating.
+          var ind = data.findIndex(d => d.name === na);
+
+          //Next, we need to check if the name in our array already has a
+          //property with the current activity.
+          if(!data[ind].act_types.includes(act)) {
+            //If it doesn't have a property with the current activity's name,
+            //add it to the list and as a property.
+            data[ind].act_types.push(act);
+            data[ind][act] = hrs;
+          } else {
+            //If a property with that activity's name already exists, we just
+            //need to find it and add the number of hours.
+            data[ind][act] += hrs;
+          }
         }
       }
     }
 
+    for(var q = 0; q < data.length; q++) {
+      console.log(data[q]);
+    }
+
     return(
-      this.createBars()
+      this.createBars(data)
     );
   }
 
@@ -161,10 +198,11 @@ export default class FirstBarGraph extends Component {
     for(j = 0; j < in_data.length; j++) {
       for(k = 0; k < in_data[j].act_types.length; k++) {
         var act = in_data[j].act_types[k];
-        barInfo.push({
-          act: act,
-          name: in_data[j].name
-        });
+        //Making an array that's simply a list of every activity, as it's
+        //all we need for the <Bar /> code.
+        if(!barInfo.includes(act)) {
+          barInfo.push(act);
+        }
       }
     }
 
@@ -172,13 +210,14 @@ export default class FirstBarGraph extends Component {
     //   console.log(barInfo[q]);
     // }
 
+    //
     var bars = barInfo.map((bar, index) =>
-      <Bar name={bar.act} key={index} dataKey={bar.act} stackId={bar.name} fill="#8884d8" />
+      <Bar name={bar} key={index} dataKey={bar} stackId="a" fill="#8884d8" />
     );
 
-    for(var q = 0; q < bars.length; q++) {
-      console.log(bars[q]);
-    }
+    // for(var q = 0; q < bars.length; q++) {
+    //   console.log(bars[q]);
+    // }
 
     return bars;
   }
@@ -198,7 +237,7 @@ export default class FirstBarGraph extends Component {
         <YAxis />
         <Tooltip />
         <Legend />
-        {this.createBars(data)}
+        {this.makeBarArray(this.state.data, "Full_name")}
       </BarChart>
     );
   }

@@ -2,27 +2,27 @@ import React,{Component} from 'react';
 import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 const data = [
-  // {
-  //   name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-  // },
-  // {
-  //   name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-  // },
-  // {
-  //   name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-  // },
-  // {
-  //   name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-  // },
-  // {
-  //   name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-  // },
-  // {
-  //   name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-  // },
-  // {
-  //   name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-  // },
+  {
+    name: 'Page A', uv: 4000, pv: 2400, amt: 2400, act_types: ["uv", "pv", "amt"],
+  },
+  {
+    name: 'Page B', uv: 3000, pv: 1398, amt: 2210, act_types: ["uv", "pv", "amt"],
+  },
+  {
+    name: 'Page C', uv: 2000, pv: 9800, amt: 2290, act_types: ["uv", "pv", "amt"],
+  },
+  {
+    name: 'Page D', uv: 2780, pv: 3908, amt: 2000, act_types: ["uv", "pv", "amt"],
+  },
+  {
+    name: 'Page E', uv: 1890, pv: 4800, amt: 2181, act_types: ["uv", "pv", "amt"],
+  },
+  {
+    name: 'Page F', uv: 2390, pv: 3800, amt: 2500, act_types: ["uv", "pv", "amt"],
+  },
+  {
+    name: 'Page G', uv: 3490, pv: 4300, amt: 2100, act_types: ["uv", "pv", "amt"],
+  },
 ];
 
 // const Bars = ({data}) => {
@@ -69,7 +69,7 @@ export default class FirstBarGraph extends Component {
   getIndOfArray(name) {
     //Find the index of the header that we want to display on the x-axis.
     //This searches for the index of the input for name.
-    var ind = this.state.headers.findIndex(name);
+    var ind = this.state.headers.findIndex(h => h === name);
     return ind;
   }
 
@@ -138,16 +138,46 @@ export default class FirstBarGraph extends Component {
     );
   }
 
-  createBars(){
-    var j, k;
-    var bars = [];
+  // createBars(in_data){
+  //   var j, k;
+  //   var bars = [];
+  //
+  //   //Iterate over the data and create a Bar tag for each activity name.
+  //   for(j = 0; j < in_data.length; j++) {
+  //     for(k = 0; k < in_data[j].act_types.length; k++) {
+  //       var act = in_data[j].act_types[k];
+  //       bars.push("<Bar dataKey=" + in_data[j][act] + " stackId=" + in_data[j].name + " fill=\"#8884d8\"/>");
+  //     }
+  //   }
+  //
+  //   return bars;
+  // }
 
-    //Iterate over the data and create a Bar tag for each activity name.
-    for(j = 0; j < data.length; j++) {
-      for(k = 0; k < data[j].act_types.length; k++) {
-        var act = data[j].act_types[k];
-        bars.push("<Bar dataKey=" + data[j][act] + " stackId=" + data[j].name + " fill=\"#8884d8\"/>");
+  createBars(in_data){
+    var j, k;
+    var barInfo = [];
+
+    //Iterate over the data and put them into objects we can use for mapping.
+    for(j = 0; j < in_data.length; j++) {
+      for(k = 0; k < in_data[j].act_types.length; k++) {
+        var act = in_data[j].act_types[k];
+        barInfo.push({
+          act: act,
+          name: in_data[j].name
+        });
       }
+    }
+
+    // for(var q = 0; q < barInfo.length; q++) {
+    //   console.log(barInfo[q]);
+    // }
+
+    var bars = barInfo.map((bar, index) =>
+      <Bar name={bar.act} key={index} dataKey={bar.act} stackId={bar.name} fill="#8884d8" />
+    );
+
+    for(var q = 0; q < bars.length; q++) {
+      console.log(bars[q]);
     }
 
     return bars;
@@ -168,10 +198,12 @@ export default class FirstBarGraph extends Component {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-        <Bar dataKey="amt" stackId="a" fill="#82ca9d" />
-        <Bar dataKey="uv" fill="#ffc658" />
+        {this.createBars(data)}
       </BarChart>
     );
   }
+  //You can't have comments in the return for some reason, so these are out here.
+  // <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+  // <Bar dataKey="amt" stackId="a" fill="#82ca9d" />
+  // <Bar dataKey="uv" fill="#ffc658" />
 }

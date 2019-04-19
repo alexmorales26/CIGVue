@@ -1,6 +1,6 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-
+import Selector from '../../../common/selector/selector'
 const data = [
   {
     name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
@@ -37,9 +37,11 @@ export default class FirstBarGraph extends Component {
       data: nextProps.serverData
     })
   }
-  
+
   render() {
     return (
+      <Fragment>
+      <Selector {...this.props} />
       <BarChart
         width={this.props.width || 500}
         height={this.props.height || 300}
@@ -57,6 +59,7 @@ export default class FirstBarGraph extends Component {
         <Bar dataKey="amt" stackId="a" fill="#82ca9d" />
         <Bar dataKey="uv" fill="#ffc658" />
       </BarChart>
+      </Fragment>
     );
   }
 }

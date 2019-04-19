@@ -35,7 +35,7 @@ constructor(props){
   super(props);
   this.state={
     data: props.serverData,
-    teamNames:props.teamNames
+    teamNames: props.teamNames
   }
 }
 componentWillReceiveProps(nextProps){

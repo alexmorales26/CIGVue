@@ -5,25 +5,19 @@ export default class Selector extends Component{
   constructor(props){
     super(props);
     this.state={
-      options: props.teamNames,
       selectedUser: undefined
     }
     this.selectorHandle = this.selectorHandle.bind(this);
   }
-  componentWillReceiveProps(nextProps){
-    this.setState({
-      options: nextProps.teamNames
 
-    })
-  }
   selectorHandle(e){
     console.log(e)
   }
 
   render(){
-    const { options } = this.state
+    const { teamNames } = this.props;
     return(
-        <Select options={options} onChange={this.selectorHandle} />
+        <Select options={teamNames} onChange={this.selectorHandle} />
     )
   }
 }

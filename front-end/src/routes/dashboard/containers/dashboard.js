@@ -8,6 +8,7 @@ import GraphCard from "./graphCard";
 import PieGraph from "../../../components/dashboard/Actions/pieChartActions";
 import SecondPieGraph from "../../../components/dashboard/Actions/secondPieChartActions";
 import FileUpload from '../../../components/dashboard/Actions/fileUploadActions';
+import BarGraphCard from  './barGraphCard'
 export default class Graphs extends Component{
     render(){
       return (
@@ -15,14 +16,14 @@ export default class Graphs extends Component{
             <FileUpload />
             <Row style={{marginBottom: "1rem"}}>
               <Col lg="6">
-                <GraphCard title="Graph 1">
+                <BarGraphCard title="Graph 1">
                   <FirstBarGraph />
-                </GraphCard>
+                </BarGraphCard>
               </Col>
               <Col lg="6">
-              <GraphCard title="Graph 2">
+              <BarGraphCard title="Graph 2">
                 <FirstBarGraph />
-              </GraphCard>
+              </BarGraphCard>
               </Col>
             </Row>
 

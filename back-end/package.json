@@ -19,7 +19,8 @@
   "homepage": "https://github.com/alexmorales26/CIGVue#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "react-select": "^2.4.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

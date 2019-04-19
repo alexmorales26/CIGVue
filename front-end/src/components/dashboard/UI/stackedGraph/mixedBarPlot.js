@@ -78,6 +78,8 @@ export default class FirstBarGraph extends Component {
       act = in_data[i][12];
       hrs = in_data[i][2];
 
+      
+
       //Check to see if the name listed is in our data array first.
       if(!data.some(d => d.name === na)) {
         //If this name doesn't exist in our array, then we need to enter

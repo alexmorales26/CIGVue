@@ -70,6 +70,8 @@ export default class FirstBarGraph extends Component {
   getIndOfArray(name) {
     //Find the index of the header that we want to display on the x-axis.
     //This searches for the index of the input for name.
+    //This is actually unnecessary, it turns out. this.state.data is apparently
+    //an array of objects, despite props.serverData being an array of arrays.
     // console.log("This.state.headers is: " + this.state.headers[5]);
     // console.log("Name is: " + name);
     //var ind = this.state.headers.findIndex(h => h == name);
@@ -95,11 +97,9 @@ export default class FirstBarGraph extends Component {
       inLen = in_data.length;
 
       //This allows us to change what we want to use as the name value for
-      //our bar graph. Since we don't have a way to select this outside of
-      //altering this code yet, it's currently hardcoded to "Full_name" for
-      //testing purposes.
+      //our bar graph.
       //var indName = this.getIndOfArray(in_name);
-      var indName = this.getIndOfArray("Full_name");
+      // var indName = this.getIndOfArray("Full_name");
       //console.log("getIndOfArray got us: " + indName);
 
       //console.log(in_data[0]);
@@ -112,13 +112,13 @@ export default class FirstBarGraph extends Component {
         //this loop, so we'll make variables for them here for ease of use.
         var na, act, hrs;
 
-        //na = in_data[i][indName];
-        na = in_data[i]["Full_name"];
+        na = in_data[i][in_name];
+        // na = in_data[i]["Full_name"];
         // console.log("na equals: ");
         // console.log(na);
 
-        //These two values are always the same in the format provided, so
-        //they're hardcoded. This can be changed.
+        //These two values are hardcoded, because the name of these properties
+        //won't change.
         //act = in_data[i][12];
         //hrs = in_data[i][2];
         act = in_data[i]["Activity_Name"];

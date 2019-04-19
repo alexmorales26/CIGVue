@@ -4,9 +4,10 @@ import { Card, CardImg, CardText, CardBody,
 import MixedBarPlot from '../../../components/dashboard/UI/stackedGraph/mixedBarPlot';
 import Selector from '../../../components/common/selector/selector'
 import NewWindow from 'react-new-window'
-import PieGraph from '../../../components/dashboard/Actions/pieChartActions'
+import FirstBarGraph from '../../../components/dashboard/Actions/firstBarGraphActions'
 
-export default class GraphCard extends Component {
+
+export default class BarGraphCard extends Component {
   constructor(props) {
     super(props);
 
@@ -39,7 +40,7 @@ export default class GraphCard extends Component {
             {isModalOpen && (
               <NewWindow title={title}>
 
-                <PieGraph />
+                <FirstBarGraph/>
 
 
                 </NewWindow>

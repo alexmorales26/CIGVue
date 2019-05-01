@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import PieGraph from '../UI/pieChartGraph/pieGraph';
-import utils from '../../../utils/selectTeamNameProcessor'
+import SecondPieGraph from '../UI/pieChartGraph/secondPieGraph';
+import utils from '../../../utils/selectUserNameProcessor'
 const mapStateToProps = (state) => {
     return {
         serverData:state.dashboard.serverData || [],
         serverDataHeaders: state.dashboard.serverDataHeaders || [],
-       teamNames: utils.teamNameProcessor(state.dashboard.serverData) || []
+        userNames: utils.userNameProcessor(state.dashboard.serverData) || []
     }
 }
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(PieGraph)
+export default connect(mapStateToProps,mapDispatchToProps)(SecondPieGraph)

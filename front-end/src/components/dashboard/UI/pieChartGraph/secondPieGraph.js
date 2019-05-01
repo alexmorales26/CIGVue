@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   PieChart, Pie, Sector, Cell,
 } from 'recharts';
-
-import Selector from '../../../common/selector/teamSelector'
+import Selector from '../../../common/selector/selector'
 
 
 const data2 = [
@@ -30,21 +29,24 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default class PieGraph extends Component {
+export default class SecondPieGraph extends Component {
 constructor(props){
   super(props);
   this.state={
     data: props.serverData,
-    teamNames: props.teamNames
+    userNames: props.userNames
   }
+
 }
 componentWillReceiveProps(nextProps){
   this.setState({
     data: nextProps.serverData,
-    teamNames: nextProps.teamNames
+    userNames: nextProps.userNames
+
   })
 }
   render() {
+
     return (
       <div>
       <Selector {...this.props} />

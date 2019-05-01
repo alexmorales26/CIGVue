@@ -1,89 +1,35 @@
-import React,{Component} from 'react';
+import React,{Component,Fragment} from 'react';
 import {BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
-let data = [
-  {
-    name: 'Page A', uv: 4000, pv: 2400, amt: 2400, act_types: ["uv", "pv", "amt"],
-  },
-  {
-    name: 'Page B', uv: 3000, pv: 1398, amt: 2210, act_types: ["uv", "pv", "amt"],
-  },
-  {
-    name: 'Page C', uv: 2000, pv: 9800, amt: 2290, act_types: ["uv", "pv", "amt"],
-  },
-  {
-    name: 'Page D', uv: 2780, pv: 3908, amt: 2000, act_types: ["uv", "pv", "amt"],
-  },
-  {
-    name: 'Page E', uv: 1890, pv: 4800, amt: 2181, act_types: ["uv", "pv", "amt"],
-  },
-  {
-    name: 'Page F', uv: 2390, pv: 3800, amt: 2500, act_types: ["uv", "pv", "amt"],
-  },
-  {
-    name: 'Page G', uv: 3490, pv: 4300, amt: 2100, act_types: ["uv", "pv", "amt"],
-  },
-];
-
-// const Bars = ({data}) => {
-//   // data //iterate
-//   var j, k;
-//   for(j = 0; j < data.length; j++) {
-//     for(k = 0; k < data[j].act_types.length; k++) {
-//       var act = data[j].act_types[k];
-//       <Bar dataKey={data[j][act]} stackId={data[j].name} fill="#8884d8"/>
-//     }
-//   }
-//   // map
-//   return (
-//     // for(j = 0; j < data.length; j++) {
-//     //   for(k = 0; k < data[j].act_types.length; k++) {
-//     //     var act = data[j].act_types[k];
-//     //     <Bar dataKey={data[j][act]} stackId={data[j].name} fill="#8884d8"/>
-//     //   }
-//     // }
-//   );
-// }
-
-// <Bars data{this.state.data}/>
+//The colors the bar chart can choose from. If it uses all of them, it loops
+//back around to the start.
+const color = [
+  "#8884d8",  //purple-blue
+  "#82ca9d",  //sea green
+  "#ffc658",  //yellow-orange
+]
 
 export default class FirstBarGraph extends Component {
   constructor(props){
     super(props);
     this.state={
       data: props.serverData,
-      headers: props.serverDataHeaders
+      headers: props.serverDataHeaders,
+      data2: [],
+      colInd: 0
     }
 
     this.makeBarArray = this.makeBarArray.bind(this);
-    this.getIndOfArray = this.getIndOfArray.bind(this);
     this.createBars = this.createBars.bind(this);
-    //console.log(typeof(this.state.serverData));
+    this.colorPicker = this.colorPicker.bind(this);
   }
   componentWillReceiveProps(nextProps){
     this.setState({
       data: nextProps.serverData,
-      headers: nextProps.serverDataHeaders
+      headers: nextProps.serverDataHeaders,
+      data2: [],
+      colInd: 0
     })
-  }
-
-  getIndOfArray(name) {
-    //Find the index of the header that we want to display on the x-axis.
-    //This searches for the index of the input for name.
-    //This is actually unnecessary, it turns out. this.state.data is apparently
-    //an array of objects, despite props.serverData being an array of arrays.
-    // console.log("This.state.headers is: " + this.state.headers[5]);
-    // console.log("Name is: " + name);
-    //var ind = this.state.headers.findIndex(h => h == name);
-    var ind;
-    for(var i = 0; i < this.state.headers.length; i++) {
-      //console.log(this.state.headers[i]);
-      if(this.state.headers[i] == name) {
-        ind = i;
-      }
-    }
-    //console.log("Ind is: " + ind);
-    return ind;
   }
 
   makeBarArray(in_data, in_name){
@@ -91,20 +37,13 @@ export default class FirstBarGraph extends Component {
     //so it doesn't break if the data has yet to be input.
     if(typeof(in_data) != 'undefined') {
       //First we need to reset the overarching data array so we can fill it.
-      data.length = 0;
+
+      //This line clears the data array so it can be repopulated with the data
+      //that's read from the CSV.
+      this.state.data2.length = 0;
 
       var inLen, i;
       inLen = in_data.length;
-
-      //This allows us to change what we want to use as the name value for
-      //our bar graph.
-      //var indName = this.getIndOfArray(in_name);
-      // var indName = this.getIndOfArray("Full_name");
-      //console.log("getIndOfArray got us: " + indName);
-
-      //console.log(in_data[0]);
-      // console.log("na should equal: ");
-      // console.log(in_data[0][indName]);
 
       //Going over each array in the array to find the three specific variables we need.
       for(i = 0; i < inLen; i++) {
@@ -113,19 +52,19 @@ export default class FirstBarGraph extends Component {
         var na, act, hrs;
 
         na = in_data[i][in_name];
-        // na = in_data[i]["Full_name"];
-        // console.log("na equals: ");
-        // console.log(na);
 
         //These two values are hardcoded, because the name of these properties
         //won't change.
-        //act = in_data[i][12];
-        //hrs = in_data[i][2];
         act = in_data[i]["Activity_Name"];
-        hrs = in_data[i]["Hours"];
+        hrs = parseFloat(in_data[i]["Hours"]);
+
+        //Catching any odd cases where one of these is undefined.
+        if(typeof(na) == 'undefined' || typeof(act) == 'undefined' || typeof(hrs) == 'undefined') {
+          continue;
+        }
 
         //Check to see if the name listed is in our data array first.
-        if(!data.some(d => d.name === na)) {
+        if(!this.state.data2.some(d => d.name === na)) {
           //console.log("Made it into if for not-existing.");
           //If this name doesn't exist in our array, then we need to enter
           //it into the array.
@@ -140,57 +79,43 @@ export default class FirstBarGraph extends Component {
           //This stores the hours spent on an activity in a property of the
           //object that shares the activity's name.
           tObj[tArr[0]] = hrs;
-
-          // console.log("Making the object produced this result:");
-          // console.log(tObj);
-          data.push(tObj);
+          this.state.data2.push(tObj);
         } else {
           //If the name does exist in our array, we just need to update that
           //specific object.
           //First we need to know which object we're updating.
-          var ind = data.findIndex(d => d.name === na);
+          var ind = this.state.data2.findIndex(d => d.name === na);
 
           //Next, we need to check if the name in our array already has a
           //property with the current activity.
-          if(!data[ind].act_types.includes(act)) {
+          if(!this.state.data2[ind].act_types.includes(act)) {
             //If it doesn't have a property with the current activity's name,
             //add it to the list and as a property.
-            data[ind].act_types.push(act);
-            data[ind][act] = hrs;
+            this.state.data2[ind].act_types.push(act);
+            this.state.data2[ind][act] = hrs;
           } else {
             //If a property with that activity's name already exists, we just
             //need to find it and add the number of hours.
-            data[ind][act] += hrs;
+            this.state.data2[ind][act] += hrs;
           }
         }
       }
     }
-
-    for(var q = 0; q < data.length; q++) {
-      console.log(data[q]);
-    }
-
-    return(
-      this.createBars(data)
-    );
   }
 
-  // createBars(in_data){
-  //   var j, k;
-  //   var bars = [];
-  //
-  //   //Iterate over the data and create a Bar tag for each activity name.
-  //   for(j = 0; j < in_data.length; j++) {
-  //     for(k = 0; k < in_data[j].act_types.length; k++) {
-  //       var act = in_data[j].act_types[k];
-  //       bars.push("<Bar dataKey=" + in_data[j][act] + " stackId=" + in_data[j].name + " fill=\"#8884d8\"/>");
-  //     }
-  //   }
-  //
-  //   return bars;
-  // }
+  //Simply using a counter to pick colors for the bars.
+  colorPicker() {
+    if(this.state.colInd + 1 < color.length) {
+      this.state.colInd++;
+    } else {
+      this.state.colInd = 0;
+    }
+
+    return color[this.state.colInd];
+  }
 
   createBars(in_data){
+
     var j, k;
     var barInfo = [];
 
@@ -205,29 +130,21 @@ export default class FirstBarGraph extends Component {
         }
       }
     }
-
-    // for(var q = 0; q < barInfo.length; q++) {
-    //   console.log(barInfo[q]);
-    // }
-
-    //
     var bars = barInfo.map((bar, index) =>
-      <Bar name={bar} key={index} dataKey={bar} stackId="a" fill="#8884d8" />
+      <Bar name={bar} key={index} dataKey={bar} stackId="a" fill={this.colorPicker()}/**fill="#8884d8"**/ isAnimationActive={false} />
     );
-
-    // for(var q = 0; q < bars.length; q++) {
-    //   console.log(bars[q]);
-    // }
 
     return bars;
   }
 
   render() {
+    this.makeBarArray(this.state.data, "Full_name");
     return (
+      <Fragment>
       <BarChart
-        width={this.props.width || 500}
-        height={this.props.height || 300}
-        data={data}
+        width={500}
+        height={1200}
+        data={this.state.data2}
         margin={{
           top: 20, right: 30, left: 20, bottom: 5,
         }}
@@ -237,12 +154,9 @@ export default class FirstBarGraph extends Component {
         <YAxis />
         <Tooltip />
         <Legend />
-        {this.makeBarArray(this.state.data, "Full_name")}
+        {this.createBars(this.state.data2)}
       </BarChart>
+      </Fragment>
     );
   }
-  //You can't have comments in the return for some reason, so these are out here.
-  // <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-  // <Bar dataKey="amt" stackId="a" fill="#82ca9d" />
-  // <Bar dataKey="uv" fill="#ffc658" />
 }

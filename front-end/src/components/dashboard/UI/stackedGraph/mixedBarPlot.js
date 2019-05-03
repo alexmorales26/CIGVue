@@ -7,6 +7,12 @@ const color = [
   "#8884d8",  //purple-blue
   "#82ca9d",  //sea green
   "#ffc658",  //yellow-orange
+  "#1ad1ff",  //light blue
+  //"#e6e600",  //dark yellow
+  "#990099",  //dark purple
+  "#ff4da6",  //faded pink
+  "#339966", //dark green
+  "#ff471a",  //light red
 ]
 
 export default class FirstBarGraph extends Component {
@@ -138,22 +144,33 @@ export default class FirstBarGraph extends Component {
   }
 
   render() {
+    //Changing the second argument in this method call will change what column
+    //it uses as the dataKey.
     this.makeBarArray(this.state.data, "Full_name");
     return (
       <Fragment>
       <BarChart
-        width={500}
-        height={1200}
+        width={1000}
+        height={500 /**1200**/}
         data={this.state.data2}
         margin={{
           top: 20, right: 30, left: 20, bottom: 5,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name" padding={{ left: 20, right: 20}}
+        /** Interval forces the graph to display every name. **/
+        interval={0}
+        /** angle turns the names so that they're displayed vertically, so
+        they can fit next to each-other if they're all displayed. **/
+        angle={-90}
+        /** dy controls the distance the name is from the line marking the
+        edge of the graph. **/
+        dy={60}
+        /** Thi label doesn't matter too much. **/
+        /**label={{ value: "Names", position: "insideBottom"}}**/ />
+        <YAxis label={{ value: "Hours", angle: -90, position: "insideLeft"}}/>
         <Tooltip />
-        <Legend />
         {this.createBars(this.state.data2)}
       </BarChart>
       </Fragment>

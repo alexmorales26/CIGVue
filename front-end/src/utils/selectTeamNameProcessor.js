@@ -11,16 +11,16 @@ const teamNameProcessor = (data) => {
   else {
     data.map((index) => {
       var x = Object.assign({}, item, {
-        value: index.Project_Name,
+        value: index.Hours,
         label: index.Project_Name
       })
       options.push(x);
     })
     const seen = new Set();
     return options.filter(el => {
-      if (el.value !== undefined) {
-        const duplicate = seen.has(el.value);
-        seen.add(el.value);
+      if (el.label !== undefined) {
+        const duplicate = seen.has(el.label);
+        seen.add(el.label);
         return !duplicate;
       }
     });

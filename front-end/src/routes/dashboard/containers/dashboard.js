@@ -15,12 +15,12 @@ export default class Graphs extends Component{
           <Container style={{marginTop: "1rem", marginBottom: "1rem"}}>
             <FileUpload />
             <Row style={{marginBottom: "1rem"}}>
-              <Col>
+              <Col >
                 <BarGraphCard title="Graph 1">
                   <FirstBarGraph />
                 </BarGraphCard>
               </Col>
-              <Col>
+              <Col >
               <BarGraphCard title="Graph 2">
                 <FirstBarGraph />
               </BarGraphCard>
@@ -28,13 +28,13 @@ export default class Graphs extends Component{
             </Row>
 
             <Row style={{marginBottom: "1rem"}}>
-              <Col lg="6">
+              <Col >
                 <GraphCard title="Graph 3">
                   <PieGraph />
                 </GraphCard>
               </Col>
 
-              <Col lg="6">
+              <Col >
               <GraphCard title="Graph 4">
                 <SecondPieGraph />
               </GraphCard>

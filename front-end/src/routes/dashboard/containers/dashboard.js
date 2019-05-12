@@ -4,6 +4,7 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle,CardHeader, Button } from 'reactstrap';
 import '../../../assets/css/graph.css'
 import FirstBarGraph from '../../../components/dashboard/Actions/firstBarGraphActions';
+import SecondBarGraph from '../../../components/dashboard/Actions/secondBarGraphActions';
 import GraphCard from "./graphCard";
 import PieGraph from "../../../components/dashboard/Actions/pieChartActions";
 import SecondPieGraph from "../../../components/dashboard/Actions/secondPieChartActions";
@@ -22,19 +23,18 @@ export default class Graphs extends Component{
               </Col>
               <Col >
               <BarGraphCard title="Graph 2">
-                <FirstBarGraph />
+                <SecondBarGraph />
               </BarGraphCard>
               </Col>
             </Row>
 
             <Row style={{marginBottom: "1rem"}}>
-              <Col >
+              <Col>
                 <GraphCard title="Graph 3">
                   <PieGraph />
                 </GraphCard>
               </Col>
-
-              <Col >
+              <Col>
               <GraphCard title="Graph 4">
                 <SecondPieGraph />
               </GraphCard>

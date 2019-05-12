@@ -15,7 +15,7 @@ const color = [
   "#ff471a",  //light red
 ]
 
-export default class FirstBarGraph extends Component {
+export default class SecondBarGraph extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -146,7 +146,7 @@ export default class FirstBarGraph extends Component {
   render() {
     //Changing the second argument in this method call will change what column
     //it uses as the dataKey.
-    this.makeBarArray(this.state.data, "Full_name");
+    this.makeBarArray(this.state.data, "Project_Name");
     return (
       <Fragment>
       <BarChart

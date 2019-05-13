@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 
+
 export default class Selector extends Component{
   constructor(props){
     super(props);
@@ -10,14 +11,26 @@ export default class Selector extends Component{
     this.selectorHandle = this.selectorHandle.bind(this);
   }
 
+  componentWillReceiveProps(e){
+    this.setState({
+      pieData: e
+    })
+  }
+  
   selectorHandle(e){
-    console.log(e)
+    console.log(e);
+   
   }
 
+  
   render(){
     const { teamNames } = this.props;
+   
     return(
+      <div>
         <Select options={teamNames} onChange={this.selectorHandle} />
+      </div>
     )
   }
+
 }

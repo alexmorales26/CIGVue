@@ -17,12 +17,12 @@ export default class Graphs extends Component{
             <FileUpload />
             <Row style={{marginBottom: "1rem"}}>
               <Col >
-                <BarGraphCard title="Graph 1">
+                <BarGraphCard title="Hours contributed per Employee">
                   <FirstBarGraph />
                 </BarGraphCard>
               </Col>
               <Col >
-              <BarGraphCard title="Graph 2">
+              <BarGraphCard title="Hours Contributed to each Project">
                 <SecondBarGraph />
               </BarGraphCard>
               </Col>
@@ -30,12 +30,12 @@ export default class Graphs extends Component{
 
             <Row style={{marginBottom: "1rem"}}>
               <Col>
-                <GraphCard title="Graph 3">
+                <GraphCard title="Employee time consumed by each Project">
                   <PieGraph />
                 </GraphCard>
               </Col>
               <Col>
-              <GraphCard title="Graph 4">
+              <GraphCard title="Amount of hours contributed by Employee">
                 <SecondPieGraph />
               </GraphCard>
               </Col>

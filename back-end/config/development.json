@@ -1,0 +1,22 @@
+{
+    "aws": {
+        "dynamoDB": {
+            "service": "dynamodb",
+            "version": "2012-08-10",
+            "tableName": "cigvue-develop",
+            "region": "us-west-2",
+            "aws_access_key_id": "AKIA3KAX4DEDLOT74LY3",
+            "aws_secret_access_key": "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"
+        },
+        "cognito": {
+            "identityPoolId": "b0d57adf-15e6-442e-b2b2-0f7c9edbc701",
+            "region": "us-west-2",
+            "userPoolId": "us-west-2_2Xew0rFc6",
+            "userPoolWebClientId": "e3oeb70o87rgsgd88k1o6oq0b",
+            "jwtKeys":{"keys":[{"alg":"RS256","e":"AQAB","kid":"SFdarPdIMRhCx14/gtricWgrrm+v4Mr+dfeGDvXQeMU=","kty":"RSA","n":"lX5zHEql06cBJfK3kRmtm6NrX7lb_5B6Ly62PRx2Cl9VMaYvvxppebv1hp4yveYXjeof_Hy3gYzqumrKIvViBiOuqC3oOhfPQRr20LLwybneJAf3AzZzzTPMxVs1lnWtN0hjLPF-omWs_09VZ-AsuNmKSD8UcHwmaraFko37pZ8r5H4TGg7u4XhdmrNYj1i88GZtAHUhP_Z1ndPTVj9g65S0HBHkflPcdAJeoKmZaUroPal5HfWaTY5OOQY7g_2aK8DGJaFRV2tUnlft4uY-uKTcRu5gnBMtAy82t_vAeNoSJkE7VJLP_0Rhmnjd5sqC_Z1MNcpATPv3Ie8ojxqERw","use":"sig"},{"alg":"RS256","e":"AQAB","kid":"3RPRftPjRWzp079RsFWmLPXXDklLFn23V9eV0h6fzwo=","kty":"RSA","n":"s9UDhDHLW5MHc7i77FZrmT-KZoNwwQcoUmjJfB_EFUlNRswUgxqoACIvSu5WSzEBrhE1VIfm12ITVDQtbVygAA3iJ5uVxwqr6vK_1ABrdPzd7OAqbDtD3eRt6LyrYOl5fdTPesmgfimFFw5jXSugV3Y_X4OPt1mdimABD0fenqG7vAzkTKjx5kG7ln5KE8NIPdlDK0eIz7qMYOLjuhZsJ5xceC1yRHjG7jr3DdY-vmG1QaHZFbCeH36M8jJFCAY56n_O-SIJhUQadTAIyFJr6XaeotPrvNw83VfjrKKadl6eHKdJTSvVkrFmh3QwYrRVk8Jt665q8HJ0M08mRrTiZw","use":"sig"}]}
+        }
+    },
+    "app": {
+        "port": 5000
+    }
+}

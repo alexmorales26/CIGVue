@@ -10,7 +10,7 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
 } from 'reactstrap';
 import { TiUser} from 'react-icons/ti';
 import LogInModal from "../../../dashboard/Actions/logInActions";
@@ -27,6 +27,9 @@ export default class Header extends React.Component {
             user: props.user
         };
     }
+    componentDidMount(){
+      this.props.setAuthUser()
+    }
     componentWillReceiveProps(nextProps) {
         this.setState({
             user: nextProps.user
@@ -40,7 +43,7 @@ export default class Header extends React.Component {
     render() {
         const { user } = this.state;
         return ( <div className="containers">
-        <Navbar color="primary" dark expand="md">
+        <Navbar style={{backgroundColor:"#0093D0"}} dark expand="md">
           <NavbarBrand href="/home">CIGVue</NavbarBrand>
 
             <Nav className="mr-auto" navbar>
@@ -76,11 +79,10 @@ export default class Header extends React.Component {
 
 </DropdownToggle>
 <DropdownMenu right>
-<DropdownItem>
- <LogInModal />
-</DropdownItem>
-<DropdownItem>
- Logout
+<DropdownItem onClick={(e) => {
+  this.props.signOutUser();
+}}>
+  Log out
 </DropdownItem>
 </DropdownMenu>
 </UncontrolledDropdown>

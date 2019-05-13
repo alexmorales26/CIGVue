@@ -1,5 +1,5 @@
 const teamNameProcessor = (data) => {
-  console.log(data);
+  //console.log(data);
   let options = [];
   let item = {
     value: "",

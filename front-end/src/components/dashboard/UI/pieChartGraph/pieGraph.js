@@ -346,7 +346,7 @@ generateAlert2(e, totalHours){
         <Line type="monotone" dataKey="Hours" stroke="#8884d8" activeDot={{ r: 8 }} />
       </LineChart>
       <br></br>
-      <table class="table table-dark">
+      {/*<table class="table table-dark">
       <thead>
         <tr>
           <th scope="col"># Of Teams</th>
@@ -362,7 +362,7 @@ generateAlert2(e, totalHours){
       <td>{}</td>
     </tr>
     </tbody>
-</table>
+      </table> */}
 <br></br>
     </div>
   </div>

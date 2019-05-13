@@ -32,8 +32,8 @@ export default class GraphCard extends Component {
 
     return(
       <Fragment>
-        <Card>
-          <CardHeader>{title}</CardHeader>
+        <Card style={{textAlign:"center",color:"white",border:"1px solid #0093D0"}}>
+          <CardHeader style={{backgroundColor:"#0093D0"}}>{title}</CardHeader>
           <CardBody>
 
             {isModalOpen && (

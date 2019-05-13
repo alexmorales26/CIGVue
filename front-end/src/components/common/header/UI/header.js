@@ -43,7 +43,7 @@ export default class Header extends React.Component {
     render() {
         const { user } = this.state;
         return ( <div className="containers">
-        <Navbar color="primary" dark expand="md">
+        <Navbar style={{backgroundColor:"#0093D0"}} dark expand="md">
           <NavbarBrand href="/home">CIGVue</NavbarBrand>
 
             <Nav className="mr-auto" navbar>

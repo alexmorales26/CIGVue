@@ -7,8 +7,13 @@ import {ConnectedRouter} from 'connected-react-router';
 import history from './store/history' ;
 import Dashboard from './routes/dashboard/index';
 import Header from './components/common/header/Actions/headerActions'
+import awsConfig from './auth/aws_config'
+import Amplify from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react'
 
-export default class App extends Component {
+/*[AWS-AMPLIFY] (https://aws-amplify.github.io/amplify-js/media/authentication_guide#manual-setup)*/
+Amplify.configure(awsConfig);
+class App extends Component {
   render() {
     return (
       <Provider store={Store} >
@@ -25,3 +30,13 @@ export default class App extends Component {
     );
   }
 }
+
+const AuthoApp = withAuthenticator(
+  (props) => (
+    <App
+      {...props}
+    />
+  ),
+  false
+);
+export default AuthoApp;

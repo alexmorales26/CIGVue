@@ -10,7 +10,7 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
 } from 'reactstrap';
 import { TiUser} from 'react-icons/ti';
 import LogInModal from "../../../dashboard/Actions/logInActions";
@@ -26,6 +26,9 @@ export default class Header extends React.Component {
             isOpen: false,
             user: props.user
         };
+    }
+    componentDidMount(){
+      this.props.setAuthUser()
     }
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -76,11 +79,10 @@ export default class Header extends React.Component {
 
 </DropdownToggle>
 <DropdownMenu right>
-<DropdownItem>
- <LogInModal />
-</DropdownItem>
-<DropdownItem>
- Logout
+<DropdownItem onClick={(e) => {
+  this.props.signOutUser();
+}}>
+  Log out
 </DropdownItem>
 </DropdownMenu>
 </UncontrolledDropdown>
